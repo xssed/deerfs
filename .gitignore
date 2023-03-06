@@ -1,8 +1,7 @@
 # ignore a single file
-.gitignore
+/deerfs_service/deerfs_service.exe
 
 # ignore an entire directory
-#/db_file/
 /deerfs_service/deerfs_data/
 
 # ignore a file type
