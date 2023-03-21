@@ -13,6 +13,7 @@
 </div>
 
  🦌 deerfs是owlcache的一个组件扩展。使用它，您可以构建一个简单的无中心分布式文件系统。     
+  主项目:<a href="https://github.com/xssed/owlcache" target="_blank">owlcache</a>    
 
 
 ## 开发与讨论(不接商业合作)
