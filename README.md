@@ -12,7 +12,8 @@ English | <a href="https://github.com/xssed/deerfs/blob/master/doc/README_zh.md"
 </div>
 
  🦌 deerfs is a component extension of owlcache. with it you can build a simple non-centralized distributed file system.     
-  Main project:<a href="https://github.com/xssed/owlcache" target="_blank">owlcache</a>     
+
+  Main project:<a href="https://github.com/xssed/owlcache" target="_blank"> owlcache</a>     
 
 
 ## Development and discussion(not involved in business cooperation)
