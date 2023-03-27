@@ -98,15 +98,15 @@ http://127.0.0.1:7727/File的Key?action=imageView
 
 | 功能             | 参数、含义、值范围                     | 示例 |
 | ---------------- | -------------------------------------- | ---- |
-| Resize(调整尺寸) | w、调整后宽度、 0~∞ <br/>H、调整后高度、0~∞ | &w=300&h=200 |
-| CropCenter(以图像中心裁剪图像)             | crop_c_w、调整后宽度、 0~∞<br/>crop_c_h、调整后高度、0~∞                                   | &crop_c_w=300&crop_c_h=200 |
-| Thumbnail(缩略图)             | thumbnail_w、调整后宽度、 0~∞<br/>thumbnail_h、调整后高度、0~∞                                   | &thumbnail_w=300&thumbnail_h=200 |
+| Resize(调整尺寸) | w、调整后宽度、 0-∞<br>H、调整后高度、0~∞ | &w=300&h=200 |
+| CropCenter(以图像中心裁剪图像)             | crop_c_w、调整后宽度、 0-∞<br>crop_c_h、调整后高度、0~∞                                   | &crop_c_w=300&crop_c_h=200 |
+| Thumbnail(缩略图)             | thumbnail_w、调整后宽度、 0-∞<br>thumbnail_h、调整后高度、0~∞                                   | &thumbnail_w=300&thumbnail_h=200 |
 | Sharpen(锐化)             | sharpen、进行sharpen处理、0.1~∞(不建议过大)                                   | &sharpen=20 |
 | Gamma(伽玛值)             | gamma、进行gamma处理、0.1~∞(Gamma=1.0提供原始图像。小于1.0的伽马会使图像变暗，大于1.0的伽玛会使其变亮)                                   | &gamma=0.1 |
 | Brightness(亮度)             | brightness、进行brightness处理、-100~100(0表示原始图像)                                   | &brightness=-20 |
 | Saturation(饱和度)             | saturation、进行saturation处理、-100~100(0表示原始图像)                                   | &saturation=-20 |
 | Contrast(图像对比度)             | contrast、进行contrast处理、-100~100(0表示原始图像)                                   | &contrast=10 |
-| Sigmoid(图像非线性对比度,对照片调整有用的非线性对比度变化，因为它保留了高光和阴影细节)             | sigmoid_midpoint 、对比度的中点、0~1(一般为0.5)<br/>sigmoid_factor、对比度增加或减少多少、-10~10(参数为正，则图像对比度增加，否则对比度降低)                                   | &sigmoid_midpoint=0.5&sigmoid_factor=10 |
+| Sigmoid(图像非线性对比度,对照片调整有用的非线性对比度变化，因为它保留了高光和阴影细节)             | sigmoid_midpoint 、对比度的中点、0~1(一般为0.5)<br>sigmoid_factor、对比度增加或减少多少、-10-10(参数为正，则图像对比度增加，否则对比度降低)                                   | &sigmoid_midpoint=0.5&sigmoid_factor=10 |
 | FlipH(水平翻转图像（从左到右）)             | flip_h、进行FlipH处理、无                                   | &flip_h |
 | FlipV(垂直翻转图像（从上到下）)             | flip_v、进行FlipV处理、无                                   | &flip_v |
 | Rotate180(图像逆时针旋转180度)             | rotate180、进行Rotate180处理、无                                   | &rotate180 |
