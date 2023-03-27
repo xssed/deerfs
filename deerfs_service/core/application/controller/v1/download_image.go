@@ -480,8 +480,15 @@ func ImageGifHandler(c *gin.Context, file *mysql_model.File, cacheFilePath strin
 		}
 
 		//进行水印处理的参数接收
-		padding := com.StrTo(c.Query("pad")).MustInt()  //偏移多少个像素
-		position := com.StrTo(c.Query("pos")).MustInt() //水印位置
+		padding := com.StrTo(c.Query("pad")).MustInt() //偏移多少个像素
+		//水印位置
+		var position int
+		_, pos_exist := c.GetQuery("pos")
+		if pos_exist {
+			position = com.StrTo(c.Query("pos")).MustInt()
+		} else {
+			position = 3
+		}
 
 		//读取水印图片，进行修改操作
 		w, err := image_handler.NewFromFile(wmifile.FileAddr, padding, position)
