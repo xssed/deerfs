@@ -156,7 +156,7 @@ http://127.0.0.1:7727/File的Key?action=imageView&watermark_image
 
 | 参数             | 含义或值范围                     | 示例 |
 | ---------------- | -------------------------------------- | ---- |
-| wmi_id | 水印图片的Key，请先将水印图片上传至deerfs之中 | &wmi_id=783025f1813323b8530c419b68bb0b3bN0MyMzN2LtaqcwZnLtQCcwTMbu |
+| wmi_id | 水印图片的Key，请先将水印图片上传至deerfs之中 | &wmi_id=783025f1813323b8530c419b<br>68bb0b3bN0MyMzN2LtaqcwZnLtQCcwTMbu |
 | pad             | 偏移多少个像素                                  | &pad=20 |
 | pos             | 设置图片水印的相对位置，五个值。<br/>	默认值为右下角。<br/>0，TopLeft <br/>	1，TopRight<br/>	2，BottomLeft<br/>	3，BottomRight<br/>	4，Center                                  | &pos=0 |
 

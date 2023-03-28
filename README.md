@@ -156,7 +156,7 @@ http://127.0.0.1:7727/File_Key?action=imageView&watermark_image
 
 | function             | Meaning or value range                     | examples |
 | ---------------- | -------------------------------------- | ---- |
-| wmi_id | The key of the watermark image, please upload the watermark image to deerfs first. | &wmi_id=783025f1813323b8530c419b68bb0b3bN0MyMzN2LtaqcwZnLtQCcwTMbu |
+| wmi_id | The key of the watermark image, please upload the watermark image to deerfs first. | &wmi_id=783025f1813323b8530c419b<br>68bb0b3bN0MyMzN2LtaqcwZnLtQCcwTMbu |
 | pad             | How many pixels are offset                                  | &pad=20 |
 | pos             | Set the relative position of the image watermark, with five values.<br/>	The default value is the lower right corner.<br/>0，TopLeft <br/>	1，TopRight<br/>	2，BottomLeft<br/>	3，BottomRight<br/>	4，Center                                  | &pos=0 |
 
