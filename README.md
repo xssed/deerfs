@@ -99,14 +99,14 @@ The functions are executed in list order with decreasing priority.
 | function             | Parameter, meaning, value range                     | examples |
 | ---------------- | -------------------------------------- | ---- |
 | Resize | w、Adjusted width、 0-∞<br>H、Height after adjustment、0-∞ | &w=300&h=200 |
-| CropCenter(Crop an image at the image center)             | crop_c_w、Adjusted width、 0-∞<br>crop_c_h、Height after adjustment、0~∞                                   | &crop_c_w=300&crop_c_h=200 |
-| Thumbnail            | thumbnail_w、Adjusted width、 0-∞<br>thumbnail_h、Height after adjustment、0-∞                                   | &thumbnail_w=300&thumbnail_h=200 |
+| CropCenter(Crop an image at the image center)             | crop_c_w、Adjusted width、 0-∞<br>crop_c_h、Height after adjustment、0~∞                                   | &crop_c_w=300&<br>crop_c_h=200 |
+| Thumbnail            | thumbnail_w、Adjusted width、 0-∞<br>thumbnail_h、Height after adjustment、0-∞                                   | &thumbnail_w=300&<br>thumbnail_h=200 |
 | Sharpen             | sharpen、Sharpen processing、0.1-∞(Not recommended to be too large)                                   | &sharpen=20 |
 | Gamma             | gamma、Gamma processing、0.1-∞(Gamma=1.0 provides the original image. Gamma less than 1.0 darkens the image, and gamma greater than 1.0 brightens it)                                   | &gamma=0.1 |
 | Brightness            | brightness、brightness processing、-100~100(0 represents the original image)                                   | &brightness=-20 |
 | Saturation             | saturation、saturation processing、-100-100(0 represents the original image)                                   | &saturation=-20 |
 | Contrast            | contrast、contrast processing、-100-100(0 represents the original image)                                   | &contrast=10 |
-| Sigmoid           | sigmoid_midpoint 、Midpoint of contrast、0~1(Typically 0.5)<br>sigmoid_factor、How much contrast increases or decreases、-10-10(If the parameter is positive, the image contrast increases, otherwise the contrast decreases)                                   | &sigmoid_midpoint=0.5&sigmoid_factor=10 |
+| Sigmoid           | sigmoid_midpoint 、Midpoint of contrast、0~1(Typically 0.5)<br>sigmoid_factor、How much contrast increases or decreases、-10-10(If the parameter is positive, the image contrast increases, otherwise the contrast decreases)                                   | &sigmoid_midpoint=0.5&<br>sigmoid_factor=10 |
 | FlipH(Flip the image horizontally (from left to right))             | flip_h、FlipH processing、not have                                   | &flip_h |
 | FlipV(Flip the image vertically (from top to bottom))             | flip_v、FlipV processing、not have                                   | &flip_v |
 | Rotate180(Image rotates 180 degrees counterclockwise)             | rotate180、Rotate180 processing、not have                                   | &rotate180 |
