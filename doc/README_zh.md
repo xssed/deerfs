@@ -148,7 +148,7 @@ http://127.0.0.1:7727/File的Key?action=imageView&watermark_text
 
 
 #### ⚪图片水印   
-支持类型png、jpg、gif。
+处理类型png、jpg、gif。
 开启图片水印需要在Get请求时添加“watermark_image”参数。   
 ~~~shell
 http://127.0.0.1:7727/File的Key?action=imageView&watermark_image
@@ -212,9 +212,9 @@ http://127.0.0.1:7727/733f67e13a8d770f19a9be203a19bdf2MyN2N0N0O4LtaqcwZnLtQCcwTM
 ![Image text](https://github.com/xssed/deerfs/blob/master/doc/assets/baichunlu_demo5.jpg?raw=true)
 
 动态图像添加动态图水印demo6  
-~~~shell
+```
 http://127.0.0.1:7727/f6a15b0e95baee0f5a081ea87fa9b3d2MxMxMwMwN2MzMxLtZnapZmLtQCcwTMbu?action=imageView&watermark_image&wmi_id=545264737d51c5e83dc803fcfb30bddcMzN1O4N3N3LtZnapZmLtZmZnREcz&pos=2
-~~~     
+```  
 输出    
 ![Image text](https://github.com/xssed/deerfs/blob/master/doc/assets/liangchaowei_demo6.gif?raw=true)
 
