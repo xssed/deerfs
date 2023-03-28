@@ -21,12 +21,12 @@
   假设我们现在deerfs的服务地址为127.0.0.1:7727，它依赖的owlcache节点是127.0.0.1:7721 
 
 ### ✺上传    
-~~~shell
+```  
 http://127.0.0.1:7727/deerfs_upload/upload
-~~~
+```  
 
 客户端简单demo    
-~~~shell
+```  
 <html>
 <head>
 <meta charset="utf-8">
@@ -41,9 +41,9 @@ http://127.0.0.1:7727/deerfs_upload/upload
 </form>
 </body>
 </html>
-~~~
+```  
 返回内容如下(deerfs作为owlcache的组件，使用了相同的响应结构)
-~~~shell
+```  
 {
     "Cmd": "",
     "Status": 200,
@@ -53,7 +53,7 @@ http://127.0.0.1:7727/deerfs_upload/upload
     "ResponseHost": "http://127.0.0.1:7727/",
     "KeyCreateTime": "0001-01-01T00:00:00Z"
 }
-~~~
+```  
 请记住响应数据的"Key"和"Data"。查询文件信息和下载文件需要用到这两个信息。    
 
 
@@ -66,30 +66,30 @@ http://127.0.0.1:7727/deerfs_upload/upload
 <b>查询的Key格式"deerfs::"+File的Key</b>    
 
 * 单节点查询
-~~~shell
+```  
 http://127.0.0.1:7721/data/?cmd=get&key=deerfs::6b49865b0d6a3fc51ae372c9545bbc36N0N3N0N0MzN3LtaqcwZnLtZmZnREcz
-~~~
+```  
 
 * 集群节点查询
-~~~shell
+```  
 http://127.0.0.1:7721/group_data/?cmd=get&key=deerfs::6b49865b0d6a3fc51ae372c9545bbc36N0N3N0N0MzN3LtaqcwZnLtZmZnREcz
-~~~
+```  
 
 
 ### ✺下载      
 
 普通下载      
-~~~shell
+```  
 http://127.0.0.1:7727/6b49865b0d6a3fc51ae372c9545bbc36N0N3N0N0MzN3LtaqcwZnLtZmZnREcz
-~~~
+```  
 
 ## 下载资源时的图像处理 
 
 图像处理时生成的临时文件会被缓存到本地，配置文件中设置的时间内不会重复生成，节省系统资源，并进行自动管理。    
 开启图像处理需要在Get请求时添加“action=imageView”参数。   
-~~~shell
+```  
 http://127.0.0.1:7727/File的Key?action=imageView
-~~~   
+```  
 
 ### ✺修改图像     
 
@@ -113,7 +113,7 @@ http://127.0.0.1:7727/File的Key?action=imageView
 | Rotate270(图像逆时针旋转270度)             | rotate270、进行Rotate270处理、无                                   | &rotate270 |
 | Rotate90(图像逆时针旋转90度)             | rotate90、进行Rotate90处理、无                                   | &rotate90 |
 | Transpose(水平翻转图像并逆时针旋转90度)             | transpose、进行Transpose处理、无                                   | &transpose |
-| Transverse(垂直翻转图像，逆时针旋转90度)             | transverse、进行Transpose处理、无                                   | &transverse |
+| Transverse(垂直翻转图像，逆时针旋转90度)             | transverse、进行Transverse处理、无                                   | &transverse |
 | Grayscale(生成图像的灰度版本)             | grayscale、进行Grayscale处理、无                                   | &grayscale |
 | invert(反转)             | invert、进行invert处理、无                                   | &invert |
 | blur(模糊)             | blur、进行blur处理、建议1-20                                   | &blur=10 |
@@ -128,9 +128,9 @@ http://127.0.0.1:7727/File的Key?action=imageView
 
 处理类型png、jpg。    
 开启文字水印需要在Get请求时添加“watermark_text”参数。   
-~~~shell
+```  
 http://127.0.0.1:7727/File的Key?action=imageView&watermark_text
-~~~   
+```  
 
 | 参数             | 含义或值范围                     | 示例 |
 | ---------------- | -------------------------------------- | ---- |
@@ -150,9 +150,9 @@ http://127.0.0.1:7727/File的Key?action=imageView&watermark_text
 #### ⚪图片水印   
 处理类型png、jpg、gif。
 开启图片水印需要在Get请求时添加“watermark_image”参数。   
-~~~shell
+```  
 http://127.0.0.1:7727/File的Key?action=imageView&watermark_image
-~~~  
+```  
 
 | 参数             | 含义或值范围                     | 示例 |
 | ---------------- | -------------------------------------- | ---- |
@@ -160,39 +160,39 @@ http://127.0.0.1:7727/File的Key?action=imageView&watermark_image
 | pad             | 偏移多少个像素                                  | &pad=20 |
 | pos             | 设置图片水印的相对位置，五个值。<br/>	默认值为右下角。<br/>0，TopLeft <br/>	1，TopRight<br/>	2，BottomLeft<br/>	3，BottomRight<br/>	4，Center                                  | &pos=0 |
 
-====================分割线====================      
+---      
 
 测试的图像样本    
 ![Image text](https://github.com/xssed/deerfs/blob/master/doc/assets/baichunlu.jpg?raw=true)
 
 图像处理demo1    
-~~~shell
+```  
 http://127.0.0.1:7727/733f67e13a8d770f19a9be203a19bdf2MyN2N0N0O4LtaqcwZnLtQCcwTMbu?action=imageView&thumbnail_w=300&thumbnail_h=200&sharpen=20&brightness=20&contrast=10
-~~~ 
+```  
 
 输出    
 ![Image text](https://github.com/xssed/deerfs/blob/master/doc/assets/baichunlu_demo1.jpg?raw=true)
 
 图像处理demo2    
-~~~shell
+```  
 http://127.0.0.1:7727/733f67e13a8d770f19a9be203a19bdf2MyN2N0N0O4LtaqcwZnLtQCcwTMbu?action=imageView&crop_c_w=300&crop_c_h=200&sigmoid_midpoint=0.5&sigmoid_factor=10&rotate270&saturation=20
-~~~ 
+```  
 
 输出    
 ![Image text](https://github.com/xssed/deerfs/blob/master/doc/assets/baichunlu_demo2.jpg?raw=true)
 
 图像处理demo3   
-~~~shell
+```  
 http://127.0.0.1:7727/733f67e13a8d770f19a9be203a19bdf2MyN2N0N0O4LtaqcwZnLtQCcwTMbu?action=imageView&w=300&h=230&blur=9.5
-~~~ 
+```  
 
 输出    
 ![Image text](https://github.com/xssed/deerfs/blob/master/doc/assets/baichunlu_demo3.jpg?raw=true)
 
 图像添加文字水印demo4   
-~~~shell
+```  
 http://127.0.0.1:7727/733f67e13a8d770f19a9be203a19bdf2MyN2N0N0O4LtaqcwZnLtQCcwTMbu?action=imageView&font=4&watermark_text&w=300&h=230&text=5L2g5aW9&q=100&rgba=34_139_34_100&size=20&pos=3&x=30&y=10&dpi=75
-~~~ 
+```  
 
 输出    
 ![Image text](https://github.com/xssed/deerfs/blob/master/doc/assets/baichunlu_demo4.jpg?raw=true)
@@ -205,9 +205,9 @@ http://127.0.0.1:7727/733f67e13a8d770f19a9be203a19bdf2MyN2N0N0O4LtaqcwZnLtQCcwTM
 ![Image text](https://github.com/xssed/deerfs/blob/master/doc/assets/fox.gif?raw=true)
 
 图像添加静态图水印demo5   
-~~~shell
+```  
 http://127.0.0.1:7727/733f67e13a8d770f19a9be203a19bdf2MyN2N0N0O4LtaqcwZnLtQCcwTMbu?action=imageView&watermark_image&wmi_id=87a132e181225bb608b25dadea08ddfaMxO5N3N1MzLtaqcwZnLtYjMzVXRE&crop_c_w=400&crop_c_h=320
-~~~     
+```  
 输出    
 ![Image text](https://github.com/xssed/deerfs/blob/master/doc/assets/baichunlu_demo5.jpg?raw=true)
 
@@ -224,6 +224,8 @@ http://127.0.0.1:7727/f6a15b0e95baee0f5a081ea87fa9b3d2MxMxMwMwN2MzMxLtZnapZmLtQC
 - owlcache
 - mysql(数据表文件路径deerfs_service/sql/table.sql)
 
+## 上传与下载的权限
+deerfs这边更注重功能的实现，作为一个独立服务，想接入各种不同的平台，各个平台权限的验证是多种多样的，所以需要你定制化的自己来实现。或者是网关来做权限验证这件事。
 
 ## 开发与讨论(不接商业合作)
 - 联系我📪:xsser@xsser.cc
