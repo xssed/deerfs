@@ -7,7 +7,7 @@ CREATE TABLE `deerfs_file` (
   `file_name` varchar(255) NOT NULL DEFAULT '' COMMENT '上传时的文件名',
   `file_ext` char(10) NOT NULL DEFAULT '' COMMENT '上传时的文件扩展名',
   `file_type` char(10) NOT NULL DEFAULT '' COMMENT '文件类型(后台识别)',
-  `file_mime` char(40) NOT NULL DEFAULT '' COMMENT '文件MIME(后台识别)',
+  `file_mime` char(57) NOT NULL DEFAULT '' COMMENT '文件MIME(后台识别)',
   `file_size` bigint DEFAULT '0' COMMENT '文件大小',
   `file_addr` varchar(555) NOT NULL DEFAULT '' COMMENT '文件存储位置',
   /* `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建日期', default '0000-00-00 00:00:00' */

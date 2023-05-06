@@ -23,6 +23,7 @@ import (
 	//"github.com/xssed/deerfs/deerfs_service/core/system/config"
 	"github.com/xssed/deerfs/deerfs_service/core/system/global"
 	"github.com/xssed/deerfs/deerfs_service/core/system/loger"
+	"go.uber.org/zap"
 )
 
 //判断文件类型,返回文件类型字符串和MIME信息字符串
@@ -303,7 +304,7 @@ func GetFileMD5(file *multipart.FileHeader) (string, error) {
 //遍历文件夹统计文件夹获取文件夹下的文件数量
 func ListDirFileNumber(folder string) int {
 
-	var return_number int = 1
+	var return_number int = 0
 
 	files, errDir := ioutil.ReadDir(folder)
 	if errDir != nil {
@@ -322,5 +323,18 @@ func ListDirFileNumber(folder string) int {
 	}
 
 	return return_number
+
+}
+
+//删除文件(不返回错误,输出错误消息)
+func DeleteFile(file_path string) {
+
+	//先判断是不是正常文件，是就删掉他
+	if IsFile(file_path) {
+		remove_err := os.Remove(file_path) //删除文件
+		if remove_err != nil {
+			loger.Lg.Info("Delete file failed:", zap.String("info", file_path)) //日志记录
+		}
+	}
 
 }

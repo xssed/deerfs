@@ -251,6 +251,17 @@ func UploadFormField() string {
 	return form_field
 }
 
+//上传区块的字段名。
+func UploadFormChunksField() string {
+
+	form_chunks_field := Get("upload.form_chunks_field")
+	if form_chunks_field == "" {
+		return "upload"
+	}
+
+	return form_chunks_field
+}
+
 //level options:debug,info,warn,error,dpanic,panic,fatal
 func LogLevel() string {
 

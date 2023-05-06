@@ -47,6 +47,9 @@ func StartRoutes() *gin.Engine {
 	upload_v1 := r.Group("/deerfs_upload")
 	{
 		upload_v1.POST("/upload", v1.UploadFile)
+		upload_v1.POST("/upload_chunks", v1.UploadChunksFile)
+		upload_v1.POST("/merge_chunks", v1.MergeChunksFile)
+		upload_v1.POST("/clear_chunks", v1.ClearChunksFile)
 	}
 
 	//文件访问

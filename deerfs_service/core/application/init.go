@@ -23,7 +23,7 @@ func Init_Deerfs_Info() {
 		fmt.Println(err.Error())
 		loger.Lg.Fatal(err.Error()) // 记录日志
 	}
-	//启动服务时获取当前文件存储目录的字节数使用情况
+	//启动服务时获取当前文件存储目录的字节数和已经存储的文件数量使用情况
 	fmt.Println("Checking the used size of the directory......")
 	file_manage.ListDirSize(config.FileStorageDirectoryPath())
 

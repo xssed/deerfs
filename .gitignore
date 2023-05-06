@@ -1,8 +1,10 @@
 # ignore a single file
 /deerfs_service/deerfs_service.exe
+/deerfs_client/deerfs_client.exe
 
 # ignore an entire directory
 /deerfs_service/deerfs_data/
+/deerfs_client/temp/
 
 # ignore a file type
 *.log
