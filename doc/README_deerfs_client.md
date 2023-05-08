@@ -61,7 +61,7 @@ Usage of deerfs_client:
 ```      
 
 
-Example 1: chunks upload
+Example 1: chunks upload(Note that the unit of cut_size is KB)
 ```
 deerfs_client -file_path ./temp/2.mp4 -deerfs_address http://127.0.0.1:7727/  -cut_size 5120 -upload_form_field upload  -http_request_timeout 8000
 ```
