@@ -3,7 +3,7 @@ package v1
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"os"
 	"path"
@@ -156,7 +156,7 @@ func UploadFile(c *gin.Context) {
 
 }
 
-//上传块文件
+// 上传块文件
 func UploadChunksFile(c *gin.Context) {
 
 	// 获取上传文件
@@ -226,7 +226,7 @@ func UploadChunksFile(c *gin.Context) {
 
 }
 
-//合并块文件
+// 合并块文件
 func MergeChunksFile(c *gin.Context) {
 
 	//文件Key值
@@ -373,7 +373,7 @@ func MergeChunksFile(c *gin.Context) {
 			controller.FileResponse(c, http.StatusInternalServerError, file_sign, errno.Error, ofs_err.Error())
 			return
 		}
-		b, rcf_err := ioutil.ReadAll(f)
+		b, rcf_err := io.ReadAll(f)
 		if rcf_err != nil {
 			fmt.Println("Failed to read chunk file", rcf_err.Error())
 			loger.Lg.Error("Failed to read chunk file:", zap.String("error", rcf_err.Error()))
@@ -460,7 +460,7 @@ func MergeChunksFile(c *gin.Context) {
 
 }
 
-//清理临时块文件夹
+// 清理临时块文件夹
 func ClearChunksFile(c *gin.Context) {
 	//文件Key值
 	file_sign, fs_exist := c.GetPostForm("file_sign")

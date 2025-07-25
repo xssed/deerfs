@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
+	"io"
 	"strconv"
 	"time"
 
@@ -11,29 +11,29 @@ import (
 	"github.com/xssed/owlcache/tools"
 )
 
-//定义OwlcacheHttpclient
+// 定义OwlcacheHttpclient
 type OwlcacheHttpclient struct {
 	sa *gorequest.SuperAgent
 }
 
-//初始化gorequest库
+// 初始化gorequest库
 func NewOHC() *OwlcacheHttpclient {
 	var grsa *gorequest.SuperAgent
 	grsa = gorequest.New()
 	return &OwlcacheHttpclient{sa: grsa}
 }
 
-//设置超时
+// 设置超时
 func (ohc *OwlcacheHttpclient) Timeout(owlcache_http_request_timeout time.Duration) {
 	ohc.sa.Timeout(owlcache_http_request_timeout * time.Millisecond)
 }
 
-//清理资源
+// 清理资源
 func (ohc *OwlcacheHttpclient) ClearSuperAgent() {
 	ohc.sa.ClearSuperAgent()
 }
 
-//发送整体的单个完整文件
+// 发送整体的单个完整文件
 func (ohc *OwlcacheHttpclient) postIntactFile() (*Response, []error) {
 
 	ohc.sa.Post(common.JoinString(*deerfsAddress, "/deerfs_upload/upload")).Type("multipart").
@@ -45,7 +45,7 @@ func (ohc *OwlcacheHttpclient) postIntactFile() (*Response, []error) {
 
 }
 
-//发送切割后的块文件
+// 发送切割后的块文件
 func (ohc *OwlcacheHttpclient) postChunksFile(cpath string) {
 
 	post_send := make(map[string]string)
@@ -65,7 +65,7 @@ func (ohc *OwlcacheHttpclient) postChunksFile(cpath string) {
 	}
 
 	defer r_res.Body.Close() //资源释放
-	body, ioerr := ioutil.ReadAll(r_res.Body)
+	body, ioerr := io.ReadAll(r_res.Body)
 	if ioerr != nil {
 		fmt.Println(tools.JoinString("postChunksFile error -> ioutil.ReadAll error:", ioerr.Error()))
 	}
@@ -80,7 +80,7 @@ func (ohc *OwlcacheHttpclient) postChunksFile(cpath string) {
 
 }
 
-//删除服务端的块文件的临时文件
+// 删除服务端的块文件的临时文件
 func (ohc *OwlcacheHttpclient) postClearChunksFile() {
 
 	fmt.Println("Request temp storage from the server...")
@@ -102,7 +102,7 @@ func (ohc *OwlcacheHttpclient) postClearChunksFile() {
 	}
 
 	defer r_res.Body.Close() //资源释放
-	body, ioerr := ioutil.ReadAll(r_res.Body)
+	body, ioerr := io.ReadAll(r_res.Body)
 	if ioerr != nil {
 		fmt.Println(tools.JoinString("postClearChunksFile error -> ioutil.ReadAll error:", ioerr.Error()))
 	}
@@ -117,7 +117,7 @@ func (ohc *OwlcacheHttpclient) postClearChunksFile() {
 
 }
 
-//向服务器发送块文件合并文件请求
+// 向服务器发送块文件合并文件请求
 func (ohc *OwlcacheHttpclient) postMergeChunksFile() {
 
 	fmt.Println("Send the merge file command to the server...")
@@ -141,7 +141,7 @@ func (ohc *OwlcacheHttpclient) postMergeChunksFile() {
 	}
 
 	defer r_res.Body.Close() //资源释放
-	body, ioerr := ioutil.ReadAll(r_res.Body)
+	body, ioerr := io.ReadAll(r_res.Body)
 	if ioerr != nil {
 		fmt.Println(tools.JoinString("postMergeChunksFile error -> ioutil.ReadAll error:", ioerr.Error()))
 	}

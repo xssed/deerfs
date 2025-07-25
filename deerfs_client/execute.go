@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
+	"io"
 	"math"
 	"os"
 	"path"
@@ -15,7 +15,7 @@ import (
 	"github.com/xssed/owlcache/tools"
 )
 
-//剪切文件
+// 剪切文件
 func cut_file(chunkSize int64) {
 
 	fmt.Println("Start cutting file......")
@@ -88,7 +88,7 @@ func cut_file(chunkSize int64) {
 
 }
 
-//合并文件
+// 合并文件
 func merge_file() {
 
 	fmt.Println("Start merging files......")
@@ -110,7 +110,7 @@ func merge_file() {
 			fmt.Println(err)
 			return
 		}
-		b, err := ioutil.ReadAll(f)
+		b, err := io.ReadAll(f)
 		if err != nil {
 			fmt.Println(err)
 			return
@@ -125,7 +125,7 @@ func merge_file() {
 
 }
 
-//执行发送整体的单个完整文件
+// 执行发送整体的单个完整文件
 func PostIntactFile() {
 
 	ohc := NewOHC()
@@ -142,7 +142,7 @@ func PostIntactFile() {
 
 	defer resp.Body.Close() //资源释放
 
-	body, ioerr := ioutil.ReadAll(resp.Body)
+	body, ioerr := io.ReadAll(resp.Body)
 	if ioerr != nil {
 		fmt.Println(tools.JoinString("PostIntactFile error -> ioutil.ReadAll error:", ioerr.Error()))
 	}
@@ -163,7 +163,7 @@ func PostIntactFile() {
 
 }
 
-//执行发送切割后的块文件
+// 执行发送切割后的块文件
 func PostChunksFile() {
 
 	//=====删除服务端的块文件的临时文件=======

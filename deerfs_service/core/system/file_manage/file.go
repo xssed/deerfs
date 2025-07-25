@@ -7,7 +7,6 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"mime/multipart"
 	"os"
 
@@ -26,7 +25,7 @@ import (
 	"go.uber.org/zap"
 )
 
-//判断文件类型,返回文件类型字符串和MIME信息字符串
+// 判断文件类型,返回文件类型字符串和MIME信息字符串
 func CheckFileType(path string) (file_type string, mime string) {
 	// Open a file descriptor
 	file, _ := os.Open(path)
@@ -45,7 +44,7 @@ func CheckFileType(path string) (file_type string, mime string) {
 	return file_match.Extension, file_match.MIME.Value
 }
 
-//判断文件类型,返回文件类型字符串和MIME信息字符串
+// 判断文件类型,返回文件类型字符串和MIME信息字符串
 func CheckFileTypeByByte(b []byte) (file_type string, mime string) {
 
 	file_match, _ := filetype.Match(b)
@@ -56,7 +55,7 @@ func CheckFileTypeByByte(b []byte) (file_type string, mime string) {
 	return file_match.Extension, file_match.MIME.Value
 }
 
-//判断文件类型,返回文件类型字符串和MIME信息字符串
+// 判断文件类型,返回文件类型字符串和MIME信息字符串
 func CheckFileTypeByMultipart(file *multipart.FileHeader) (file_type string, mime string) {
 	src, err := file.Open()
 	if err != nil {
@@ -76,7 +75,7 @@ func CheckFileTypeByMultipart(file *multipart.FileHeader) (file_type string, mim
 	return file_match.Extension, file_match.MIME.Value
 }
 
-//判断文件是不是图片，返回布尔值
+// 判断文件是不是图片，返回布尔值
 func IsImage(path string) bool {
 	// Open a file descriptor
 	file, _ := os.Open(path)
@@ -94,7 +93,7 @@ func IsImage(path string) bool {
 	}
 }
 
-//判断文件或路径是否存在
+// 判断文件或路径是否存在
 func PathExists(path string) (bool, error) {
 
 	_, err := os.Stat(path)
@@ -122,7 +121,7 @@ func IsFile(path string) bool {
 	return !IsDir(path)
 }
 
-//获取文件的大小,单位字节
+// 获取文件的大小,单位字节
 func FileSize(path string) int64 {
 	file, err := os.Stat(path)
 	if err != nil {
@@ -131,10 +130,10 @@ func FileSize(path string) int64 {
 	return file.Size()
 }
 
-//遍历文件夹统计文件夹使用量
+// 遍历文件夹统计文件夹使用量
 func ListDirSize(folder string) {
 
-	files, errDir := ioutil.ReadDir(folder)
+	files, errDir := os.ReadDir(folder)
 	if errDir != nil {
 		fmt.Println(errDir.Error())
 		loger.Lg.Fatal(errDir.Error()) // 记录日志
@@ -159,7 +158,7 @@ func ListDirSize(folder string) {
 
 }
 
-//创建目录
+// 创建目录
 func CreateFolder(folder string) error {
 
 	//目录校验
@@ -175,7 +174,7 @@ func CreateFolder(folder string) error {
 
 }
 
-//字节的单位转换,保留两位小数,将字节数转换为带单位的字符串
+// 字节的单位转换,保留两位小数,将字节数转换为带单位的字符串
 func FormatFileSizeToString(fileSize int64) (size string) {
 	if fileSize < 1024 {
 		//return strconv.FormatInt(fileSize, 10) + "B"
@@ -194,8 +193,8 @@ func FormatFileSizeToString(fileSize int64) (size string) {
 	}
 }
 
-//字节的单位转换,保留两位小数,将字节数转换为指定的单位(指定单位必须大写字母)
-//B,KB,MB,GB,TB,EB
+// 字节的单位转换,保留两位小数,将字节数转换为指定的单位(指定单位必须大写字母)
+// B,KB,MB,GB,TB,EB
 func FormatFileSize(fileSize int64, unit string) string {
 
 	if unit == "B" {
@@ -216,7 +215,7 @@ func FormatFileSize(fileSize int64, unit string) string {
 
 }
 
-//生成对应目录的文件存储路径字符串
+// 生成对应目录的文件存储路径字符串
 func GetFilePathString() string {
 
 	currentTime := time.Now()
@@ -227,7 +226,7 @@ func GetFilePathString() string {
 
 }
 
-//生成文件对应的缓存目录相关字符串,专属函数
+// 生成文件对应的缓存目录相关字符串,专属函数
 func GetFileCachePathString(input_str string) (uri string, uri_md5 string, head_uri string) {
 
 	r_uri := []rune(input_str)
@@ -239,8 +238,8 @@ func GetFileCachePathString(input_str string) (uri string, uri_md5 string, head_
 
 }
 
-//加密数据
-//使用默认码表，6位加密
+// 加密数据
+// 使用默认码表，6位加密
 func EnCryptToString(src string) string {
 
 	enc := encrypt.DefaultEncrypt6.EnCryptToString([]byte(src))
@@ -248,8 +247,8 @@ func EnCryptToString(src string) string {
 
 }
 
-//解密数据
-//使用默认码表，6位加密
+// 解密数据
+// 使用默认码表，6位加密
 func DeCryptString(enc string) ([]byte, error) {
 
 	dec, err := encrypt.DefaultEncrypt6.DeCryptString(enc)
@@ -261,7 +260,7 @@ func DeCryptString(enc string) ([]byte, error) {
 
 }
 
-//根据文件路径来获取文件的MD5值
+// 根据文件路径来获取文件的MD5值
 func GetFileMD5ByPath(filepath string) (string, error) {
 
 	file, err := os.Open(filepath)
@@ -282,7 +281,7 @@ func GetFileMD5ByPath(filepath string) (string, error) {
 	return md5_str, nil
 }
 
-//根据文件资源来获取文件的MD5值
+// 根据文件资源来获取文件的MD5值
 func GetFileMD5(file *multipart.FileHeader) (string, error) {
 	src, err := file.Open()
 	if err != nil {
@@ -301,12 +300,12 @@ func GetFileMD5(file *multipart.FileHeader) (string, error) {
 	return md5_str, nil
 }
 
-//遍历文件夹统计文件夹获取文件夹下的文件数量
+// 遍历文件夹统计文件夹获取文件夹下的文件数量
 func ListDirFileNumber(folder string) int {
 
 	var return_number int = 0
 
-	files, errDir := ioutil.ReadDir(folder)
+	files, errDir := os.ReadDir(folder)
 	if errDir != nil {
 		fmt.Println(errDir.Error())
 		loger.Lg.Error(errDir.Error()) // 记录日志
@@ -326,7 +325,7 @@ func ListDirFileNumber(folder string) int {
 
 }
 
-//删除文件(不返回错误,输出错误消息)
+// 删除文件(不返回错误,输出错误消息)
 func DeleteFile(file_path string) {
 
 	//先判断是不是正常文件，是就删掉他

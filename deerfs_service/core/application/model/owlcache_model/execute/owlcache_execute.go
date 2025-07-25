@@ -4,7 +4,7 @@ import (
 	//"fmt"
 	// "log"
 	"errors"
-	"io/ioutil"
+	"io"
 	"strings"
 	"time"
 
@@ -16,7 +16,7 @@ import (
 	"go.uber.org/zap"
 )
 
-//绑定数据到OwlResponse
+// 绑定数据到OwlResponse
 func bindDataToOwlResponse(cmd CommandType, status ResStatus, results, key string, data []byte, responsehost, keycreatetime string) *OwlResponse {
 
 	var owlres *OwlResponse = &OwlResponse{}
@@ -55,7 +55,7 @@ func Get(key string) (*OwlResponse, error) {
 	}
 
 	defer r_res.Body.Close() //资源释放
-	body, ioerr := ioutil.ReadAll(r_res.Body)
+	body, ioerr := io.ReadAll(r_res.Body)
 	if ioerr != nil {
 		return nil, errors.New(common.JoinString("Get ioutil.ReadAll error:", ioerr.Error()))
 	}
@@ -79,7 +79,7 @@ func Set(key, valuedata, exptime string) (*OwlResponse, error) {
 	}
 
 	defer r_res.Body.Close() //资源释放
-	body, ioerr := ioutil.ReadAll(r_res.Body)
+	body, ioerr := io.ReadAll(r_res.Body)
 	if ioerr != nil {
 		return nil, errors.New(common.JoinString("Set ioutil.ReadAll error:", ioerr.Error()))
 	}
@@ -104,7 +104,7 @@ func Expire(key, exptime string) (*OwlResponse, error) {
 	}
 
 	defer r_res.Body.Close() //资源释放
-	body, ioerr := ioutil.ReadAll(r_res.Body)
+	body, ioerr := io.ReadAll(r_res.Body)
 	if ioerr != nil {
 		return nil, errors.New(common.JoinString("Expire ioutil.ReadAll error:", ioerr.Error()))
 	}
@@ -129,7 +129,7 @@ func Delete(key string) (*OwlResponse, error) {
 	}
 
 	defer r_res.Body.Close() //资源释放
-	body, ioerr := ioutil.ReadAll(r_res.Body)
+	body, ioerr := io.ReadAll(r_res.Body)
 	if ioerr != nil {
 		return nil, errors.New(common.JoinString("Delete ioutil.ReadAll error:", ioerr.Error()))
 	}
@@ -154,7 +154,7 @@ func Ping(valuedata string) (*OwlResponse, error) {
 	}
 
 	defer r_res.Body.Close() //资源释放
-	body, ioerr := ioutil.ReadAll(r_res.Body)
+	body, ioerr := io.ReadAll(r_res.Body)
 	if ioerr != nil {
 		return nil, errors.New(common.JoinString("Ping ioutil.ReadAll error:", ioerr.Error()))
 	}
@@ -178,7 +178,7 @@ func Exists(key string) (*OwlResponse, error) {
 	}
 
 	defer r_res.Body.Close() //资源释放
-	body, ioerr := ioutil.ReadAll(r_res.Body)
+	body, ioerr := io.ReadAll(r_res.Body)
 	if ioerr != nil {
 		return nil, errors.New(common.JoinString("Exists ioutil.ReadAll error:", ioerr.Error()))
 	}
@@ -203,7 +203,7 @@ func Pass(pass string) (*OwlResponse, error) {
 	}
 
 	defer r_res.Body.Close() //资源释放
-	body, ioerr := ioutil.ReadAll(r_res.Body)
+	body, ioerr := io.ReadAll(r_res.Body)
 	if ioerr != nil {
 		return nil, errors.New(common.JoinString("Pass ioutil.ReadAll error:", ioerr.Error()))
 	}
@@ -228,7 +228,7 @@ func Group_Get(key, valuedata string) (*OwlResponse, error) {
 	}
 
 	defer r_res.Body.Close() //资源释放
-	body, ioerr := ioutil.ReadAll(r_res.Body)
+	body, ioerr := io.ReadAll(r_res.Body)
 	if ioerr != nil {
 		return nil, errors.New(common.JoinString("Group_Get ioutil.ReadAll error:", ioerr.Error()))
 	}

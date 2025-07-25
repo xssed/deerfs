@@ -12,7 +12,7 @@ import (
 
 var conf *ini.File
 
-//配置初始化
+// 配置初始化
 func Init() {
 
 	//执行步骤信息
@@ -28,7 +28,7 @@ func Init() {
 
 }
 
-//通用获取数据基本方法
+// 通用获取数据基本方法
 func Get(str string) string {
 
 	strArr := strings.Split(str, ".")
@@ -40,8 +40,8 @@ func Get(str string) string {
 	return conf.Section("").Key(strArr[0]).String()
 }
 
-//给当前主机的deerfs节点起一个在集群中的唯一名字，例如deerfs1，deerfs2，deerfs3。。。。。。
-//deerfs启动后会将名字与mysql服务器进行数据更新，一旦名字注册后请谨慎修改名字。
+// 给当前主机的deerfs节点起一个在集群中的唯一名字，例如deerfs1，deerfs2，deerfs3。。。。。。
+// deerfs启动后会将名字与mysql服务器进行数据更新，一旦名字注册后请谨慎修改名字。
 func SystemTagName() string {
 
 	name := Get("system_tag.name")
@@ -49,7 +49,7 @@ func SystemTagName() string {
 
 }
 
-//该节点的资源定位地址
+// 该节点的资源定位地址
 func SystemTagUriAddress() string {
 
 	uri_address := Get("system_tag.uri_address")
@@ -57,7 +57,7 @@ func SystemTagUriAddress() string {
 
 }
 
-//是否允许该节点在集群中冗余存储相同文件。0关闭，1开启。默认为关闭。开启后，该节点存储集群中已经存在的文件时会重复存储(按需配置)。
+// 是否允许该节点在集群中冗余存储相同文件。0关闭，1开启。默认为关闭。开启后，该节点存储集群中已经存在的文件时会重复存储(按需配置)。
 func SystemTagAllowDuplicates() int {
 
 	allow_duplicates, _ := filter.Int(Get("system_tag.allow_duplicates"))
@@ -65,7 +65,7 @@ func SystemTagAllowDuplicates() int {
 
 }
 
-//定时任务-自动输出内存信息。单位分钟。默认为5。
+// 定时任务-自动输出内存信息。单位分钟。默认为5。
 func SystemTagTaskMemoryInfoToLog() int {
 
 	task_memory_info_to_log, _ := filter.Int(Get("system_tag.task_memory_info_to_log"))
@@ -73,7 +73,7 @@ func SystemTagTaskMemoryInfoToLog() int {
 
 }
 
-//deerfs的IP地址。
+// deerfs的IP地址。
 func HttpAddr() string {
 
 	http_addr := Get("http.http_addr")
@@ -84,7 +84,7 @@ func HttpAddr() string {
 	return http_addr
 }
 
-//deerfs的端口。
+// deerfs的端口。
 func HttpPort() string {
 
 	http_port := Get("http.http_port")
@@ -105,7 +105,7 @@ func HttpMode() string {
 	return http_mode
 }
 
-//HTTP读超时,单位秒.
+// HTTP读超时,单位秒.
 func HttpReadTimeout() int {
 
 	http_read_timeout, _ := filter.Int(Get("http.http_read_timeout"))
@@ -116,7 +116,7 @@ func HttpReadTimeout() int {
 	return http_read_timeout
 }
 
-//HTTP写超时,单位秒。
+// HTTP写超时,单位秒。
 func HttpWriteTimeout() int {
 
 	http_write_timeout, _ := filter.Int(Get("http.http_write_timeout"))
@@ -127,7 +127,7 @@ func HttpWriteTimeout() int {
 	return http_write_timeout
 }
 
-//owlcache(HTTP服务)的地址。
+// owlcache(HTTP服务)的地址。
 func OwlcacheAddr() string {
 
 	owlcache_addr := Get("owlcache.owlcache_addr")
@@ -138,7 +138,7 @@ func OwlcacheAddr() string {
 	return owlcache_addr
 }
 
-//owlcache(HTTP服务)的密码。
+// owlcache(HTTP服务)的密码。
 func OwlcachePassword() string {
 
 	owlcache_password := Get("owlcache.owlcache_password")
@@ -146,7 +146,7 @@ func OwlcachePassword() string {
 	return owlcache_password
 }
 
-//间隔多久向owlcache发送一次ping命令。单位是秒。默认一秒。
+// 间隔多久向owlcache发送一次ping命令。单位是秒。默认一秒。
 func OwlcachePingInterval() int {
 
 	owlcache_ping_interval, _ := filter.Int(Get("owlcache.owlcache_ping_interval"))
@@ -157,7 +157,7 @@ func OwlcachePingInterval() int {
 	return owlcache_ping_interval
 }
 
-//向owlcache(HTTP服务)请求超时的时间。
+// 向owlcache(HTTP服务)请求超时的时间。
 func OwlcacheHttpRequestTimeout() time.Duration {
 
 	owlcache_http_request_timeout, _ := filter.Int64(Get("http.owlcache_http_request_timeout"))
@@ -168,7 +168,7 @@ func OwlcacheHttpRequestTimeout() time.Duration {
 	return time.Duration(owlcache_http_request_timeout)
 }
 
-//向owlcache(HTTP服务)中存储文件信息的Key前缀字符串。默认是“deerfs::”。
+// 向owlcache(HTTP服务)中存储文件信息的Key前缀字符串。默认是“deerfs::”。
 func OwlcacheKeyStoragePrefix() string {
 
 	owlcache_key_storage_prefix := Get("http.owlcache_key_storage_prefix")
@@ -178,7 +178,7 @@ func OwlcacheKeyStoragePrefix() string {
 	return owlcache_key_storage_prefix
 }
 
-//向owlcache(HTTP服务)中存储文件信息的数据过期时间。单位秒。默认值为0永不过期。
+// 向owlcache(HTTP服务)中存储文件信息的数据过期时间。单位秒。默认值为0永不过期。
 func OwlcacheKeyStorageExpire() string {
 
 	owlcache_key_storage_expire := Get("http.owlcache_key_storage_expire")
@@ -188,7 +188,7 @@ func OwlcacheKeyStorageExpire() string {
 	return owlcache_key_storage_expire
 }
 
-//文件存储的目录。
+// 文件存储的目录。
 func FileStorageDirectoryPath() string {
 
 	directory_path := Get("file_storage.directory_path")
@@ -199,7 +199,7 @@ func FileStorageDirectoryPath() string {
 	return directory_path
 }
 
-//节点目录最大存储容量。默认大小1TB。单位是字节。
+// 节点目录最大存储容量。默认大小1TB。单位是字节。
 func FileStorageDirectoryStorageMaxSize() int64 {
 
 	directory_storage_max_size, _ := filter.Int64(Get("file_storage.directory_storage_max_size"))
@@ -210,7 +210,7 @@ func FileStorageDirectoryStorageMaxSize() int64 {
 	return directory_storage_max_size
 }
 
-//单个文件的最大存储大小。默认大小5M。单位是字节。
+// 单个文件的最大存储大小。默认大小5M。单位是字节。
 func FileStorageFileStorageMaxSize() int64 {
 
 	file_storage_max_size, _ := filter.Int64(Get("file_storage.file_storage_max_size"))
@@ -221,7 +221,7 @@ func FileStorageFileStorageMaxSize() int64 {
 	return file_storage_max_size
 }
 
-//缓存文件的过期时间。默认为3600(一小时)。单位是秒。
+// 缓存文件的过期时间。默认为3600(一小时)。单位是秒。
 func FileStorageCacheFileExpireTime() string {
 
 	cache_file_expire_time := Get("file_storage.cache_file_expire_time")
@@ -232,7 +232,7 @@ func FileStorageCacheFileExpireTime() string {
 	return cache_file_expire_time
 }
 
-//定时任务-自动清理过期的缓存文件。单位分钟。默认为1。
+// 定时任务-自动清理过期的缓存文件。单位分钟。默认为1。
 func FileStorageClearExpireCacheFileData() int {
 
 	task_clear_expire_cache_file_data, _ := filter.Int(Get("file_storage.task_clear_expire_cache_file_data"))
@@ -240,7 +240,7 @@ func FileStorageClearExpireCacheFileData() int {
 
 }
 
-//表单提交字段。
+// 表单提交字段。
 func UploadFormField() string {
 
 	form_field := Get("upload.form_field")
@@ -251,7 +251,7 @@ func UploadFormField() string {
 	return form_field
 }
 
-//上传区块的字段名。
+// 上传区块的字段名。
 func UploadFormChunksField() string {
 
 	form_chunks_field := Get("upload.form_chunks_field")
@@ -262,7 +262,7 @@ func UploadFormChunksField() string {
 	return form_chunks_field
 }
 
-//level options:debug,info,warn,error,dpanic,panic,fatal
+// level options:debug,info,warn,error,dpanic,panic,fatal
 func LogLevel() string {
 
 	log_level := Get("log.log_level")
@@ -273,7 +273,7 @@ func LogLevel() string {
 	return log_level
 }
 
-//日志文件的位置
+// 日志文件的位置
 func LogFilename() string {
 
 	log_filename := Get("log.log_filename")
@@ -284,7 +284,7 @@ func LogFilename() string {
 	return log_filename
 }
 
-//在进行切割之前，日志文件的最大大小（以MB为单位）
+// 在进行切割之前，日志文件的最大大小（以MB为单位）
 func LogMaxsize() int {
 
 	log_maxsize, _ := filter.Int(Get("log.log_maxsize"))
@@ -295,7 +295,7 @@ func LogMaxsize() int {
 	return log_maxsize
 }
 
-//保留旧文件的最大天数
+// 保留旧文件的最大天数
 func LogMaxage() int {
 
 	log_maxage, _ := filter.Int(Get("log.log_maxage"))
@@ -306,7 +306,7 @@ func LogMaxage() int {
 	return log_maxage
 }
 
-//保留旧文件的最大个数
+// 保留旧文件的最大个数
 func LogMaxbackups() int {
 
 	log_maxbackups, _ := filter.Int(Get("log.log_maxbackups"))
@@ -317,7 +317,7 @@ func LogMaxbackups() int {
 	return log_maxbackups
 }
 
-//mysql的地址。
+// mysql的地址。
 func MysqlHost() string {
 
 	host := Get("mysql.host")
@@ -328,7 +328,7 @@ func MysqlHost() string {
 	return host
 }
 
-//mysql的端口。
+// mysql的端口。
 func MysqlPort() string {
 
 	port := Get("mysql.port")
@@ -339,21 +339,21 @@ func MysqlPort() string {
 	return port
 }
 
-//连接mysql的账号。
+// 连接mysql的账号。
 func MysqlUser() string {
 
 	user := Get("mysql.user")
 	return user
 }
 
-//连接mysql的密码。
+// 连接mysql的密码。
 func MysqlPassword() string {
 
 	password := Get("mysql.password")
 	return password
 }
 
-//mysql中deerfs的数据库名称。
+// mysql中deerfs的数据库名称。
 func MysqlDatabase() string {
 
 	database := Get("mysql.database")
@@ -364,7 +364,7 @@ func MysqlDatabase() string {
 	return database
 }
 
-//mysql中deerfs的数据库对应编码。
+// mysql中deerfs的数据库对应编码。
 func MysqlCharset() string {
 
 	charset := Get("mysql.charset")
@@ -375,7 +375,7 @@ func MysqlCharset() string {
 	return charset
 }
 
-//查询结果是否自动解析为时间。
+// 查询结果是否自动解析为时间。
 func MysqlParsetime() string {
 
 	parsetime := Get("mysql.parsetime")
@@ -386,7 +386,7 @@ func MysqlParsetime() string {
 	return parsetime
 }
 
-//MySQL的时区设置。
+// MySQL的时区设置。
 func MysqlLoc() string {
 
 	loc := Get("mysql.loc")
@@ -397,7 +397,7 @@ func MysqlLoc() string {
 	return loc
 }
 
-//最大链接数。
+// 最大链接数。
 func MysqlMaxidleconns() int {
 
 	maxidleconns, _ := filter.Int(Get("log.maxidleconns"))
@@ -408,7 +408,7 @@ func MysqlMaxidleconns() int {
 	return maxidleconns
 }
 
-//最大打开链接。
+// 最大打开链接。
 func MysqlMaxopenconns() int {
 
 	maxopenconns, _ := filter.Int(Get("log.maxopenconns"))
@@ -419,7 +419,7 @@ func MysqlMaxopenconns() int {
 	return maxopenconns
 }
 
-//设置表前缀。
+// 设置表前缀。
 func MysqlTableprefix() string {
 
 	tableprefix := Get("mysql.tableprefix")

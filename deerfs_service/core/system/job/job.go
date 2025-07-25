@@ -26,7 +26,7 @@ func Init() {
 	Ping()
 }
 
-//清理过期的缓存文件数据
+// 清理过期的缓存文件数据
 func ClearExpireCacheFileData() {
 
 	task_clear_expire_cache_file_data := config.FileStorageClearExpireCacheFileData()
@@ -59,7 +59,7 @@ func ClearExpireCacheFileData() {
 
 }
 
-//统计内存使用情况
+// 统计内存使用情况
 func MemoryInfoToLog() {
 
 	task_memoryinfotolog := config.SystemTagTaskMemoryInfoToLog()
@@ -73,7 +73,7 @@ func MemoryInfoToLog() {
 
 }
 
-//定时Ping命令
+// 定时Ping命令
 func Ping() {
 
 	owlcache_ping_interval := config.OwlcachePingInterval()
