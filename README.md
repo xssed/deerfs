@@ -1,3 +1,5 @@
+
+
 English | <a href="https://github.com/xssed/deerfs/blob/master/doc/README_zh.md" target="_blank">中文简介</a>
 
 <div align="center">
@@ -17,7 +19,7 @@ English | <a href="https://github.com/xssed/deerfs/blob/master/doc/README_zh.md"
 
 ## deerfs_service    
 
-   General upload of server files, chunks upload, cluster query of file information, image processing when downloading resources (Resize, CropCenter, Thumbnail, Sharpen, Gamma, Brightness, Saturation, Contrast, Sigmoid, Ro tate, Transverse, Transpose, Grayscale, invert, blur, Text watermark, Image watermark).
+   General upload of server files, chunks upload, cluster query of file information, image processing when downloading resources (Resize, CropCenter, Thumbnail, Sharpen, Gamma, Brightness, Saturation, Contrast, Sigmoid, Rotate, Transverse, Transpose, Grayscale, invert, blur, Text watermark, Image watermark).
 
    <a href="https://github.com/xssed/deerfs/blob/master/doc/README_deerfs_service.md" target="_blank">Document</a>   
 
@@ -37,6 +39,3 @@ Deerfs focuses more on functionality. As a standalone service, it needs to acces
 ## Development and discussion(not involved in business cooperation)
 - Email📪:xsser@xsser.cc
 - Homepage🛀:https://www.xsser.cc
-
-
-
